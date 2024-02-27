@@ -56,7 +56,8 @@ img {
   display: flex;
   gap: 40px;
 }
-.nav-list-item {
+
+.nav-list-item-link {
   display: block;
   color: #2e2f42;
   font-size: 16px;
@@ -65,12 +66,24 @@ img {
   line-height: 1.5;
   letter-spacing: 0.02em;
   padding: 24px 0;
+  transition-property: color 250ms ease-in-out;
 }
-.nav-list-item:hover {
+.nav-list-item-link:hover {
   color: #404bbf;
 }
-.nav-list-item:focus {
+.nav-list-item-link:focus {
   color: #404bbf;
+}
+.nav-list-item-link:focus::after {
+  content: "";
+  border-radius: 2px;
+  width: 48px;
+  height: 4px;
+  background-color: #404bbf;
+  display: block;
+  margin-top: 4px;
+  margin-bottom: 0;
+  padding: 0;
 }
 .contacts {
   font-style: normal;
@@ -87,6 +100,7 @@ img {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.02em;
+  transition-property: color 250ms ease-in-out;
 }
 .contacts-item:hover {
   color: #404bbf;
@@ -107,6 +121,15 @@ img {
 .baner {
   background-color: #2e2f42;
   padding: 188px 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url(../images/baner-background.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
 }
 .main-heading {
   color: #fff;
@@ -133,6 +156,8 @@ img {
   height: 56px;
   border: none;
   border-radius: 4px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+  transition: background-color 250ms ease-in-out;
 }
 .order-service-button:hover {
   background-color: #404bbf;
@@ -162,6 +187,16 @@ img {
 .advantages-item {
   width: calc((100% - 72px) / 4);
 }
+.advantage-item-icon-container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #8e8f99;
+  border-radius: 4px;
+  background: #f4f4fd;
+  padding: 24px 0;
+  margin-bottom: 8px;
+}
+
 .advantage-title {
   color: #2e2f42;
   font-size: 20px;
@@ -189,9 +224,14 @@ img {
   background-color: #fff;
   width: calc((100% - 72px) / 4);
   border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 1px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 1px 6px 0 rgba(46, 47, 66, 0.08);
 }
 .team-member-description {
   padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .team-member-name {
   color: #2e2f42;
@@ -208,8 +248,26 @@ img {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.02em;
-  text-align: center;
+  margin-bottom: 8px;
 }
+.team-member-links-list {
+  display: flex;
+  gap: 24px;
+}
+.team-member-links-link {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background-color: #4d5ae5;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-link-icon {
+  fill: white;
+}
+
 .portfolio {
   padding: 120px 0;
 }
@@ -221,6 +279,8 @@ img {
 }
 .portfolio-list-item {
   width: calc((100% - 48px) / 3);
+  position: relative;
+  overflow: hidden;
 }
 .portfolio-list-item-container {
   padding: 32px 16px;
@@ -242,9 +302,39 @@ img {
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
+.portfolio-overlay {
+  background-color: #4d5ae5;
+  padding-top: 40px;
+  padding-left: 32px;
+  padding-right: 32px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: translatey(100%);
+  transition: transform 250ms ease-in-out;
+}
+.portfolio-list-item:hover .portfolio-overlay {
+  transform: translatey(0);
+}
+.portfolio-overlay p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+}
+
 .footer {
   background-color: #2e2f42;
   padding: 100px 0;
+}
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
 }
 .footer-logo {
   color: #4d5ae5;
@@ -267,4 +357,34 @@ img {
   line-height: 1.5;
   letter-spacing: 0.02em;
   max-width: 264px;
+}
+
+.footer-social-media-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.footer-media-links-list {
+  display: flex;
+  gap: 16px;
+}
+.footer-media-links-link {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background-color: #4d5ae5;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  transition-property: background-color 250ms ease-in-out;
+}
+
+.social-link-icon {
+  fill: white;
+}
+.footer-media-links-link:hover {
+  background-color: #31d0aa;
 }
