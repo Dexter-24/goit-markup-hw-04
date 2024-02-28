@@ -80,10 +80,10 @@ img {
 .nav-list-item-link:focus {
   color: #404bbf;
 }
-.nav-list :first-child .nav-list-item-link {
+.nav-list-item-link:active {
   color: #404bbf;
 }
-.nav-list :first-child .nav-list-item-link::after {
+.nav-list-item-link:active::after {
   content: "";
   width: 100%;
   position: absolute;
