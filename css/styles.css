@@ -23,6 +23,8 @@ img {
 }
 .header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 .container {
   width: 1158px;
@@ -58,7 +60,7 @@ img {
 }
 
 .nav-list-item-link {
-  display: block;
+  position: relative;
   color: #2e2f42;
   font-size: 16px;
   font-style: normal;
@@ -66,25 +68,27 @@ img {
   line-height: 1.5;
   letter-spacing: 0.02em;
   padding: 24px 0;
-  transition-property: color 250ms ease-in-out;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .nav-list-item-link:hover {
   color: #404bbf;
 }
 .nav-list-item-link:focus {
   color: #404bbf;
 }
-.nav-list-item-link:focus::after {
+.nav-list-item-link:active::after {
   content: "";
-  border-radius: 2px;
-  width: 48px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
   height: 4px;
   background-color: #404bbf;
-  display: block;
-  margin-top: 4px;
-  margin-bottom: 0;
-  padding: 0;
+  border-radius: 2px;
+  margin-bottom: auto;
 }
+
 .contacts {
   font-style: normal;
   margin: auto 0;
@@ -100,7 +104,7 @@ img {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.02em;
-  transition-property: color 250ms ease-in-out;
+  transition: color 250ms ease-in-out;
 }
 .contacts-item:hover {
   color: #404bbf;
@@ -121,15 +125,16 @@ img {
 .baner {
   background-color: #2e2f42;
   padding: 188px 0;
+  margin: 0 auto;
   background-image: linear-gradient(
-      to right,
       rgba(46, 47, 66, 0.7),
       rgba(46, 47, 66, 0.7)
     ),
     url(../images/baner-background.jpg);
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: center;
   background-size: cover;
+  max-width: 1440px;
 }
 .main-heading {
   color: #fff;
@@ -157,7 +162,7 @@ img {
   border: none;
   border-radius: 4px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
-  transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .order-service-button:hover {
   background-color: #404bbf;
@@ -195,6 +200,8 @@ img {
   background: #f4f4fd;
   padding: 24px 0;
   margin-bottom: 8px;
+  align-items: center;
+  height: 112px;
 }
 
 .advantage-title {
@@ -253,6 +260,7 @@ img {
 .team-member-links-list {
   display: flex;
   gap: 24px;
+  justify-content: center;
 }
 .team-member-links-link {
   display: flex;
@@ -262,10 +270,17 @@ img {
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.team-member-links-link:hover {
+  background-color: #404bbf;
 }
 
+.team-member-links-link:focus {
+  background-color: #404bbf;
+}
 .social-link-icon {
-  fill: white;
+  fill: #f4f4fd;
 }
 
 .portfolio {
@@ -279,8 +294,33 @@ img {
 }
 .portfolio-list-item {
   width: calc((100% - 48px) / 3);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portfolio-list-item:hover {
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+.app-image {
   position: relative;
   overflow: hidden;
+}
+.app-description {
+  position: absolute;
+  top: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+  background-color: #4d5ae5;
+  padding: 40px 32px;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.app-image:hover .app-description {
+  transform: translateY(0);
 }
 .portfolio-list-item-container {
   padding: 32px 16px;
@@ -302,30 +342,6 @@ img {
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
-.portfolio-overlay {
-  background-color: #4d5ae5;
-  padding-top: 40px;
-  padding-left: 32px;
-  padding-right: 32px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  transform: translatey(100%);
-  transition: transform 250ms ease-in-out;
-}
-.portfolio-list-item:hover .portfolio-overlay {
-  transform: translatey(0);
-}
-.portfolio-overlay p {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  color: #f4f4fd;
-}
 
 .footer {
   background-color: #2e2f42;
@@ -335,6 +351,10 @@ img {
   display: flex;
   flex-direction: row;
   gap: 120px;
+  align-items: baseline;
+}
+.footer-company-info {
+  margin-right: 120px;
 }
 .footer-logo {
   color: #4d5ae5;
@@ -379,12 +399,15 @@ img {
   border-radius: 50%;
   justify-content: center;
   align-items: center;
-  transition-property: background-color 250ms ease-in-out;
+  transition-property: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link-icon {
   fill: white;
 }
 .footer-media-links-link:hover {
+  background-color: #31d0aa;
+}
+.footer-media-links-link:focus {
   background-color: #31d0aa;
 }
