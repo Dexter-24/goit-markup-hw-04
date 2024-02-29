@@ -83,6 +83,7 @@ img {
 }
 .nav-list-item-link:active {
   color: #404bbf;
+  padding-bottom: 20px;
 }
 .nav-list-item-link:active::after {
   content: "";
